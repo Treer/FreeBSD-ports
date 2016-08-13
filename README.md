@@ -26,7 +26,7 @@ Install the LCDproc package for pfsense:
 pkg add https://github.com/Treer/FreeBSD-ports/releases/download/0.9.15/pfSense-pkg-LCDproc-0.9.15.txz
 ```
 
-Tell pfsense the package was installed (this would happen automatically if pfsense had installed the package:
+Tell pfsense the package was installed (this would happen automatically if pfsense had installed the package):
 ```
 /usr/local/bin/php -f /etc/rc.packages LCDproc POST-INSTALL
 ```
