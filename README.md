@@ -30,3 +30,7 @@ Tell pfsense the package was installed (this would happen automatically if pfsen
 ```
 /usr/local/bin/php -f /etc/rc.packages LCDproc POST-INSTALL
 ```
+
+## Licence ##
+
+All my contributions can be considered as available under the ESF license.
