@@ -40,6 +40,10 @@ You can type these commands into the web GUI, via *Diagnostics* **→** *Command
     /usr/local/bin/php -f /etc/rc.packages LCDproc POST-INSTALL
     ```
 
+## Update ##
+
+Repeat step 3 with the latest version to update
+
 ## Licence ##
 
 All my contributions can be considered as available under the ESF license. 
