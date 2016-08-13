@@ -36,4 +36,6 @@ Tell pfsense the package was installed (this would happen automatically if pfsen
 
 ## Licence ##
 
-All my contributions can be considered as available under the ESF license.
+All my contributions can be considered as available under the ESF license. 
+
+(I assume pfSense will have no interest in any of this until/unless there's a full Bootstrap coversion and signed CLAs from every contributor)
