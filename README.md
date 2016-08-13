@@ -42,7 +42,13 @@ You can type these commands into the web GUI, via *Diagnostics* **→** *Command
 
 ## Update ##
 
-Repeat step 3 with the latest version to update
+Still working this out. Uninstall:
+
+1. ```/usr/local/bin/php -f /etc/rc.packages LCDproc DEINSTALL```
+2. ```pkg remove pfSense-pkg-LCDproc-0.9.15```
+3. ```/usr/local/bin/php -f /etc/rc.packages LCDproc POST-DEINSTALL```
+
+Then jump to step 3 of the installation instructons using the version you want to update to.
 
 ## Licence ##
 
