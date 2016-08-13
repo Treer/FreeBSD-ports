@@ -6,9 +6,9 @@ The ports package [has been created](/Treer/FreeBSD-ports/releases), remaining t
 * Add realtime traffic features to LCDproc
 * Update UI to use Bootstrap
 
-## Installtion ##
+## Installation ##
 
-You type these commands in the web UI, via Diagnostics -> Command Prompt -> Execute Shell Command
+You can type these commands into the web GUI, via Diagnostics -> Command Prompt -> Execute Shell Command
 
 Install the freetype2 library:
 ```
