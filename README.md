@@ -39,6 +39,16 @@ You can type these commands into the web GUI, via *Diagnostics* **→** *Command
     ```
     /usr/local/bin/php -f /etc/rc.packages LCDproc POST-INSTALL
     ```
+    You'll also have to insert the text below into the `<installedpackages>` tag inside `/conf/config.xml', and reboot:
+    ```
+    <menu>
+        <name>LCDproc</name>
+        <tooltiptext>Set LCDproc settings such as display driver and COM port.</tooltiptext>
+        <section>Services</section>
+        <url>/packages/lcdproc/lcdproc.php</url>
+    </menu>
+    ```
+    An alternate way to do this is *Diagnostics* **→** *Backup & Restore*, select "Package Manager" in the dropdown, then click *Download configuration as XML*. Edit the configuration and upload it. This way saves needing to reboot.
 
 ## Update ##
 
