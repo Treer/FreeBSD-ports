@@ -5,9 +5,11 @@ This fork of [pfsense/FreeBSD-ports](https://github.com/pfsense/FreeBSD-ports) i
 The ports package [has been created](https://github.com/Treer/FreeBSD-ports/tree/devel/sysutils/pfSense-pkg-LCDproc) and [compiled](https://github.com/Treer/FreeBSD-ports/releases) from the LCDproc**-dev** package of pfSense 2.2. I chose LCDproc-dev because it's had more work and functionality added than LCDproc, and was first created to add early support for LCDd 0.5.4 without affecting pfSense's LCDproc package. So since a pfSense 2.3+ port will be using LCDd 0.5.7+ anyway, there's no need to keep maintaining two packages.
 
 
-Remaining tasks:
-* Add realtime traffic features to LCDproc
-* Update UI to use Bootstrap
+* Remaining tasks:
+
+    ☐ Add realtime traffic features to LCDproc, so I can know who's using the damn bandwidth ;)
+    
+    ☑ Update UI to use Bootstrap *(Now implemented in 0.10.0)*
 
 ## Installation ##
 
