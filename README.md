@@ -39,7 +39,7 @@ You can type these commands into the web GUI, via *Diagnostics* **→** *Command
     ```
     /usr/local/bin/php -f /etc/rc.packages LCDproc POST-INSTALL
     ```
-    You'll also have to insert the text below into the `<installedpackages>` tag inside `/conf/config.xml', and reboot:
+    You'll also have to insert the text below into the `<installedpackages>` tag inside `/conf/config.xml`, and reboot:
     ```
     <menu>
         <name>LCDproc</name>
