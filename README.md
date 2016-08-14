@@ -57,7 +57,7 @@ Still working this out. Uninstall:
 1. ```/usr/local/bin/php -f /etc/rc.packages LCDproc DEINSTALL```
 2. ```pkg remove pfSense-pkg-LCDproc-0.9.15```
 3. ```/usr/local/bin/php -f /etc/rc.packages LCDproc POST-DEINSTALL```
-4. Remove lcdproc sections from the `<installedpackages>` tag inside `/conf/config.xml`, and reboot:
+4. [This step won't be required if you were already on LCDproc version 0.10.x] Remove lcdproc sections from the `<installedpackages>` tag inside `/conf/config.xml`, and reboot.
 
 Then jump to step 3 of the installation instructons using the version you want to update to.
 
