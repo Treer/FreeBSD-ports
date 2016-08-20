@@ -35,7 +35,7 @@ You can type these commands into the web GUI, via *Diagnostics* **→** *Command
  
 1.  Install the LCDproc package for pfsense:
     ```
-    pkg add https://github.com/Treer/FreeBSD-ports/releases/download/0.9.15/pfSense-pkg-LCDproc-0.10.1.txz
+    pkg add https://github.com/Treer/FreeBSD-ports/releases/download/0.10.1/pfSense-pkg-LCDproc-0.10.1.txz
     ```
 
 1.  Tell pfsense the package was installed (this would happen automatically if pfsense had installed the package):
