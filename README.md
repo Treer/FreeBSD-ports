@@ -49,6 +49,12 @@ You can type these commands into the web GUI, via *Diagnostics* **→** *Command
         <section>Services</section>
         <url>/packages/lcdproc/lcdproc.php</url>
     </menu>
+    <service>
+        <name>lcdproc</name>
+        <rcfile>lcdproc.sh</rcfile>
+        <executable>LCDd</executable>
+        <description><![CDATA[LCD Driver]]></description>
+    </service>
     ```
     An alternate way to do this is *Diagnostics* **→** *Backup & Restore*, select "Package Manager" in the dropdown, then click *Download configuration as XML*. Edit the configuration and upload it. This way saves needing to reboot.
 
