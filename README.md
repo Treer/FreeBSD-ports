@@ -59,6 +59,11 @@ You can type these commands into the web GUI, via *Diagnostics* **→** *Command
     ```
     An alternate way to do this is *Diagnostics* **→** *Backup & Restore*, select "Package Manager" in the dropdown, then click *Download configuration as XML*. Edit the configuration and upload it. This way saves needing to reboot.
 
+**Troubleshooting** - If you've done all that and rebooted and LCDproc still isn't available from the Services menu...
+* You should be able to reach the LCDproc config screens by navigating your browser to `/packages/lcdproc/lcdproc.php` - this is where the menu would link to.
+* I've found that using the package manager to install a small package like Cron can sort out the LCDproc menu, and you can always remove Cron again afterwards.
+
+
 ## Update ##
 
 Still working this out. Uninstall:
