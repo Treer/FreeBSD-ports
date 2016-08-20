@@ -63,6 +63,7 @@ You can type these commands into the web GUI, via *Diagnostics* **→** *Command
 * You should be able to reach the LCDproc config screens by navigating your browser to `/packages/lcdproc/lcdproc.php` - this is where the menu would link to.
 * I've found that using the package manager to install a small package like Cron can sort out the LCDproc menu, and you can always remove Cron again afterwards.
 
+Installing another package to trigger the package manager suggests to me that step 4 might not be working, or I've overlooked something the package manager does for you. If anybody knows, let me know.
 
 ## Update ##
 
