@@ -7,9 +7,10 @@ The ports package [has been created](https://github.com/Treer/FreeBSD-ports/tree
 
 * Remaining tasks:
 
-    ☐ Add realtime traffic features to LCDproc, so I can know who's using the damn bandwidth ;)
-    
     ☑ Update UI to use Bootstrap *(Now implemented in 0.10.0)*
+
+    ☑ Add realtime traffic features to LCDproc, so I can know who's using the damn bandwidth ;) *(Now implemented in 0.10.1)*
+    
 
 ## Installation ##
 
@@ -34,7 +35,7 @@ You can type these commands into the web GUI, via *Diagnostics* **→** *Command
  
 1.  Install the LCDproc package for pfsense:
     ```
-    pkg add https://github.com/Treer/FreeBSD-ports/releases/download/0.9.15/pfSense-pkg-LCDproc-0.9.15.txz
+    pkg add https://github.com/Treer/FreeBSD-ports/releases/download/0.9.15/pfSense-pkg-LCDproc-0.10.1.txz
     ```
 
 1.  Tell pfsense the package was installed (this would happen automatically if pfsense had installed the package):
