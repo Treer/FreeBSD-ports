@@ -5,9 +5,11 @@ This fork of [pfsense/FreeBSD-ports](https://github.com/pfsense/FreeBSD-ports) i
 The ports package [has been created](https://github.com/Treer/FreeBSD-ports/tree/devel/sysutils/pfSense-pkg-LCDproc) and [compiled](https://github.com/Treer/FreeBSD-ports/releases) from the LCDproc**-dev** package of pfSense 2.2. I chose LCDproc-dev because it's had more work and functionality added than LCDproc, and was first created to add early support for LCDd 0.5.4 without affecting pfSense's LCDproc package. So since a pfSense 2.3+ port will be using LCDd 0.5.7+ anyway, there's no need to keep maintaining two packages.
 
 
-Remaining tasks:
-* Add realtime traffic features to LCDproc
-* Update UI to use Bootstrap
+* Remaining tasks:
+
+    ☐ Add realtime traffic features to LCDproc, so I can know who's using the damn bandwidth ;)
+    
+    ☑ Update UI to use Bootstrap *(Now implemented in 0.10.0)*
 
 ## Installation ##
 
@@ -39,6 +41,22 @@ You can type these commands into the web GUI, via *Diagnostics* **→** *Command
     ```
     /usr/local/bin/php -f /etc/rc.packages LCDproc POST-INSTALL
     ```
+    You'll also have to insert the text below into the `<installedpackages>` tag inside `/conf/config.xml`, and reboot:
+    ```
+    <menu>
+        <name>LCDproc</name>
+        <tooltiptext>Set LCDproc settings such as display driver and COM port.</tooltiptext>
+        <section>Services</section>
+        <url>/packages/lcdproc/lcdproc.php</url>
+    </menu>
+    <service>
+        <name>lcdproc</name>
+        <rcfile>lcdproc.sh</rcfile>
+        <executable>LCDd</executable>
+        <description><![CDATA[LCD Driver]]></description>
+    </service>
+    ```
+    An alternate way to do this is *Diagnostics* **→** *Backup & Restore*, select "Package Manager" in the dropdown, then click *Download configuration as XML*. Edit the configuration and upload it. This way saves needing to reboot.
 
 ## Update ##
 
@@ -47,6 +65,7 @@ Still working this out. Uninstall:
 1. ```/usr/local/bin/php -f /etc/rc.packages LCDproc DEINSTALL```
 2. ```pkg remove pfSense-pkg-LCDproc-0.9.15```
 3. ```/usr/local/bin/php -f /etc/rc.packages LCDproc POST-DEINSTALL```
+4. [This step won't be required if you were already on LCDproc version 0.10.x] Remove lcdproc sections from the `<installedpackages>` tag inside `/conf/config.xml`, and reboot.
 
 Then jump to step 3 of the installation instructons using the version you want to update to.
 
