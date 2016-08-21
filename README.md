@@ -57,6 +57,9 @@ You can type these commands into the web GUI, via *Diagnostics* **→** *Command
         <description><![CDATA[LCD Driver]]></description>
     </service>
     ```
+    
+    **Note** the `<url>/packages/lcdproc/lcdproc.php</url>` in the `<menu>` tag is different to that of the old LCDproc package.
+    
     An alternate way to do this is *Diagnostics* **→** *Backup & Restore*, select "Package Manager" in the dropdown, then click *Download configuration as XML*. Edit the configuration and upload it. This way saves needing to reboot.
 
 **Troubleshooting** - If you've done all that and rebooted and LCDproc still isn't available from the Services menu...
