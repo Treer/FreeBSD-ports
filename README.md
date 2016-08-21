@@ -37,6 +37,10 @@ You can type these commands into the web GUI, via *Diagnostics* **→** *Command
     ```
     pkg add https://github.com/Treer/FreeBSD-ports/releases/download/0.10.1/pfSense-pkg-LCDproc-0.10.1.txz
     ```
+    or, if you use a 32-bit system:
+    ```
+    pkg add https://github.com/Treer/FreeBSD-ports/releases/download/0.10.1-i386/pfSense-pkg-LCDproc-0.10.1.txz
+    ```
 
 1.  Tell pfsense the package was installed (this would happen automatically if pfsense had installed the package):
     ```
