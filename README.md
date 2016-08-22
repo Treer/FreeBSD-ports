@@ -7,6 +7,8 @@ The ports package [has been created](https://github.com/Treer/FreeBSD-ports/tree
 
 * Remaining tasks:
 
+    ☑ Put the existing LCDproc files into a pfSense 2.3 compatible ports package *(Now implemented in 0.9.5)*
+
     ☑ Update UI to use Bootstrap *(Now implemented in 0.10.0)*
 
     ☑ Add realtime traffic features to LCDproc, so I can know who's using the damn bandwidth ;) *(Now implemented in 0.10.1)*
@@ -68,7 +70,7 @@ You can type these commands into the web GUI, via *Diagnostics* **→** *Command
 
 **Troubleshooting** - If you've done all that and rebooted and LCDproc still isn't available from the Services menu...
 * You should be able to reach the LCDproc config screens by navigating your browser to `/packages/lcdproc/lcdproc.php` - this is where the menu would link to.
-* I've found that using the package manager to install a small package like Cron can sort out the LCDproc menu, and you can always remove Cron again afterwards.
+* I've found that using the package manager to install a small package like Cron can sort out the LCDproc menu, and you can always remove Cron again afterwards. The *Diagnostics* **→** *Backup & Restore* method might also fix this.
 
 Installing another package to trigger the package manager suggests to me that step 4 might not be working, or I've overlooked something the package manager does for you. If anybody knows, let me know.
 
@@ -85,6 +87,4 @@ Then jump to step 3 of the installation instructons using the version you want t
 
 ## Licence ##
 
-All my contributions can be considered as available under the ESF license. 
-
-(I assume pfSense will have no interest in any of this until/unless there's a full Bootstrap coversion and signed CLAs from every contributor)
+All my contributions can be considered as available under the ESF license.
