@@ -7,11 +7,11 @@ The ports package [has been created](https://github.com/Treer/FreeBSD-ports/tree
 
 * Remaining tasks:
 
-    ☑ Put the existing LCDproc files into a pfSense 2.3 compatible ports package *(Now implemented in 0.9.5)*
+    ☑ Put the existing LCDproc files into a pfSense 2.3 compatible ports package *([Now implemented](https://github.com/Treer/FreeBSD-ports/releases) in 0.9.5)*
 
-    ☑ Update UI to use Bootstrap *(Now implemented in 0.10.0)*
+    ☑ Update UI to use Bootstrap *([Now implemented](https://github.com/Treer/FreeBSD-ports/releases) in 0.10.0)*
 
-    ☑ Add realtime traffic features to LCDproc, so I can know who's using the damn bandwidth ;) *(Now implemented in 0.10.1)*
+    ☑ Add realtime traffic features to LCDproc, so I can know who's using the damn bandwidth ;) *([Now implemented](https://github.com/Treer/FreeBSD-ports/releases) in 0.10.1)*
     
 
 ## Installation ##
