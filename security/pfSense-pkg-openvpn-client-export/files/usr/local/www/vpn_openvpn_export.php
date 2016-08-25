@@ -164,6 +164,7 @@ if (!empty($act)) {
 	$openvpnmanager = $_GET['openvpnmanager'];
 
 	$verifyservercn = $_GET['verifyservercn'];
+	$blockoutsidedns = $_GET['blockoutsidedns'];
 	$randomlocalport = $_GET['randomlocalport'];
 	$usetoken = $_GET['usetoken'];
 	if ($usetoken && (substr($act, 0, 10) == "confinline")) {
@@ -250,17 +251,17 @@ if (!empty($act)) {
 				$exp_name = urlencode($exp_name . "-config.ovpn");
 				$expformat = "baseconf";
 		}
-		$exp_path = openvpn_client_export_config($srvid, $usrid, $crtid, $useaddr, $verifyservercn, $randomlocalport, $usetoken, $nokeys, $proxy, $expformat, $password, false, false, $openvpnmanager, $advancedoptions);
+		$exp_path = openvpn_client_export_config($srvid, $usrid, $crtid, $useaddr, $verifyservercn, $blockoutsidedns, $randomlocalport, $usetoken, $nokeys, $proxy, $expformat, $password, false, false, $openvpnmanager, $advancedoptions);
 	}
 
 	if ($act == "visc") {
 		$exp_name = urlencode($exp_name . "-Viscosity.visc.zip");
-		$exp_path = viscosity_openvpn_client_config_exporter($srvid, $usrid, $crtid, $useaddr, $verifyservercn, $randomlocalport, $usetoken, $password, $proxy, $openvpnmanager, $advancedoptions);
+		$exp_path = viscosity_openvpn_client_config_exporter($srvid, $usrid, $crtid, $useaddr, $verifyservercn, $blockoutsidedns, $randomlocalport, $usetoken, $password, $proxy, $openvpnmanager, $advancedoptions);
 	}
 
 	if (substr($act, 0, 4) == "inst") {
 		$exp_name = urlencode($exp_name."-install.exe");
-		$exp_path = openvpn_client_export_installer($srvid, $usrid, $crtid, $useaddr, $verifyservercn, $randomlocalport, $usetoken, $password, $proxy, $openvpnmanager, $advancedoptions, substr($act, 5));
+		$exp_path = openvpn_client_export_installer($srvid, $usrid, $crtid, $useaddr, $verifyservercn, $blockoutsidedns, $randomlocalport, $usetoken, $password, $proxy, $openvpnmanager, $advancedoptions, substr($act, 5));
 	}
 
 	if (!$exp_path) {
@@ -373,6 +374,13 @@ $section->addInput(new Form_Select(
 ))->setHelp("Optionally verify the server certificate Common Name (CN) when the client connects. Current clients, including the most recent versions of Windows, Viscosity, Tunnelblick, OpenVPN on iOS and Android and so on should all work at the default automatic setting.".
 	"<br/><br/>Only use tls-remote if an older client must be used. The option has been deprecated by OpenVPN and will be removed in the next major version.".
 	"<br/><br/>With tls-remote the server CN may optionally be enclosed in quotes. This can help if the server CN contains spaces and certain clients cannot parse the server CN. Some clients have problems parsing the CN with quotes. Use only as needed.");
+
+$section->addInput(new Form_Checkbox(
+	'blockoutsidedns',
+	'Block Outside DNS',
+	'Block access to DNS servers except across OpenVPN while connected, forcing clients to use only VPN DNS servers.',
+	true
+))->setHelp("Requires Windows 10 and OpenVPN 2.3.9 or later. Only Windows 10 is prone to DNS leakage in this way, other clients will ignore the option as they are not affected.");
 
 $section->addInput(new Form_Checkbox(
 	'randomlocalport',
@@ -581,6 +589,10 @@ function download_begin(act, i, j) {
 	var verifyservercn;
 	verifyservercn = document.getElementById("verifyservercn").value;
 
+	var blockoutsidedns = 0;
+	if (document.getElementById("blockoutsidedns").checked) {
+		blockoutsidedns = 1;
+	}
 	var randomlocalport = 0;
 	if (document.getElementById("randomlocalport").checked) {
 		randomlocalport = 1;
@@ -653,35 +665,36 @@ function download_begin(act, i, j) {
 
 	var dlurl;
 	dlurl  = "/vpn_openvpn_export.php?act=" + act;
-	dlurl += "&srvid=" + escape(servers[index][0]);
+	dlurl += "&srvid=" + encodeURIComponent(servers[index][0]);
 	if (users[i]) {
-		dlurl += "&usrid=" + escape(users[i][0]);
-		dlurl += "&crtid=" + escape(users[i][1]);
+		dlurl += "&usrid=" + encodeURIComponent(users[i][0]);
+		dlurl += "&crtid=" + encodeURIComponent(users[i][1]);
 	}
 	if (certs[j]) {
 		dlurl += "&usrid=";
-		dlurl += "&crtid=" + escape(certs[j][0]);
+		dlurl += "&crtid=" + encodeURIComponent(certs[j][0]);
 	}
-	dlurl += "&useaddr=" + escape(useaddr);
-	dlurl += "&verifyservercn=" + escape(verifyservercn);
-	dlurl += "&randomlocalport=" + escape(randomlocalport);
-	dlurl += "&openvpnmanager=" + escape(openvpnmanager);
-	dlurl += "&usetoken=" + escape(usetoken);
+	dlurl += "&useaddr=" + encodeURIComponent(useaddr);
+	dlurl += "&verifyservercn=" + encodeURIComponent(verifyservercn);
+	dlurl += "&blockoutsidedns=" + encodeURIComponent(blockoutsidedns);
+	dlurl += "&randomlocalport=" + encodeURIComponent(randomlocalport);
+	dlurl += "&openvpnmanager=" + encodeURIComponent(openvpnmanager);
+	dlurl += "&usetoken=" + encodeURIComponent(usetoken);
 	if (usepass) {
-		dlurl += "&password=" + escape(pass);
+		dlurl += "&password=" + encodeURIComponent(pass);
 	}
 	if (useproxy) {
-		dlurl += "&proxy_type=" + escape(proxytype);
-		dlurl += "&proxy_addr=" + escape(proxyaddr);
-		dlurl += "&proxy_port=" + escape(proxyport);
-		dlurl += "&proxy_authtype=" + escape(proxyauth);
+		dlurl += "&proxy_type=" + encodeURIComponent(proxytype);
+		dlurl += "&proxy_addr=" + encodeURIComponent(proxyaddr);
+		dlurl += "&proxy_port=" + encodeURIComponent(proxyport);
+		dlurl += "&proxy_authtype=" + encodeURIComponent(proxyauth);
 		if (useproxypass) {
-			dlurl += "&proxy_user=" + escape(proxyuser);
-			dlurl += "&proxy_password=" + escape(proxypass);
+			dlurl += "&proxy_user=" + encodeURIComponent(proxyuser);
+			dlurl += "&proxy_password=" + encodeURIComponent(proxypass);
 		}
 	}
 
-	dlurl += "&advancedoptions=" + escape(advancedoptions);
+	dlurl += "&advancedoptions=" + encodeURIComponent(advancedoptions);
 
 	window.open(dlurl, "_self");
 }
