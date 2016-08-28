@@ -13,6 +13,10 @@ The ports package [has been created](https://github.com/Treer/FreeBSD-ports/tree
 
     ☑ Add realtime traffic features to LCDproc, so I can know who's using the damn bandwidth ;) *([Now implemented](https://github.com/Treer/FreeBSD-ports/releases) in 0.10.1)*
     
+    ☑ Submit it as [a pull request to pfSense](https://github.com/pfsense/FreeBSD-ports/pull/178)
+    
+    ☐ Change the interface totals screen to be daily totals instead
+    
 
 ## Installation ##
 
