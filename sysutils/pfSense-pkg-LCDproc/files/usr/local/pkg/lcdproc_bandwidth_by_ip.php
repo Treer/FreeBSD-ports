@@ -1,8 +1,9 @@
 <?php
 /*
  * lcdproc_bandwidth_by_ip.php
+ *
  * part of pfSense (https://www.pfsense.org)
- * Copyright (c) 2004-2016 Electric Sheep Fencing, LLC
+ * Copyright (c) 2004-2016 Rubicon Communications, LLC (Netgate)
  * All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,9 +21,9 @@
 
 /*
  * This file is copied from bandwidth_by_ip.php
- * This file must not be placed in the www directory, unlike 
- * bandwidth_by_ip.php it does not check for a authenticated 
- * user session. 
+ * This file must not be placed in the www directory, because unlike 
+ * bandwidth_by_ip.php it does not check for an authenticated user
+ * session. 
  *
  * It is used locally by lcdproc_client.php 
  */ 
