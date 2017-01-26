@@ -103,14 +103,10 @@ function get_uptime_stats() {
 
 function get_loadavg_stats() {
 	exec("/usr/bin/uptime", $output, $ret);
-	if (stristr($output[0], "day")) {
-		$temp = preg_split("/ /", $output[0], -1, PREG_SPLIT_NO_EMPTY);
-		$status = "$temp[9] $temp[10] $temp[11]";
-	} else {
-		$temp = preg_split("/ /", $output[0], -1, PREG_SPLIT_NO_EMPTY);
-		$status = "$temp[8] $temp[9] $temp[10]";
-	}
-	return($status);
+
+	$temp = preg_split("/ /", $output[0], -1, PREG_SPLIT_NO_EMPTY);
+	$count = count($temp);
+	return ($count >= 3) ? "{$temp[$count - 3]} {$temp[$count - 2]} {$temp[$count - 1]}" : "Not available";
 }
 
 function get_mbuf_stats() {
