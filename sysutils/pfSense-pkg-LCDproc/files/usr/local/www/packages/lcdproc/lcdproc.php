@@ -69,7 +69,7 @@ if ($_POST) {
 		$lcdproc_config['outputleds']                  = $pconfig['outputleds'];
 		$lcdproc_config['mtxorb_type']                 = $pconfig['mtxorb_type'];
 		$lcdproc_config['mtxorb_adjustable_backlight'] = $pconfig['mtxorb_adjustable_backlight'];
-		$lcdproc_config['delaymult']                   = $pconfig['delaymult'];
+		$lcdproc_config['hd44780_delaymult']           = $pconfig['hd44780_delaymult'];
 				
 		write_config();
 		sync_package_lcdproc();
@@ -261,11 +261,10 @@ $section->add($subsection);
     function updateInputVisibility() {	
 		var driverName_lowercase = $('#driver').val().toLowerCase();
 	
-		// Hide the connection type selection field when not using the HD44780 driver		
+		// Hide the HD44780 specific fields when not using the HD44780 driver		
 		var using_HD44780_driver  = driverName_lowercase.indexOf("hd44780") >= 0;
-		using_HD44780_driver     |= jQuery("#driver option:selected").text().toLowerCase().indexOf("hd44780") >= 0;
-		hideInput('connection_type', !using_HD44780_driver); // Hides the entire section
-		hideInput('delaymult', !using_HD44780_driver); // Hides the entire section
+		hideInput('connection_type',   !using_HD44780_driver); // Hides the entire section
+		hideInput('hd44780_delaymult', !using_HD44780_driver); // Hides the entire section
 
 		// Hide the Matrix Orbital specific fields when not using the MtxOrb driver		
 		var using_MtxOrb_driver  = driverName_lowercase.indexOf("mtxorb") >= 0;
@@ -298,14 +297,20 @@ $section->addInput(
 	)
 )->setHelp('Set the port speed.<br />Caution: not all the driver or panels support all the speeds, leave "default" if unsure.');
 
+// The Delay Multiplier is HD44780-specific, so is hidden by javascript
+// if the HD44780 driver is not being used.
 $section->addInput(
 	new Form_Input(
-		'delaymult',
+		'hd44780_delaymult',
 		'Delay Multiplier',
-                'text',
-		$pconfig['delaymult'] // Initial value.
+		$pconfig['hd44780_delaymult'], // Initial value.
+		[
+			'1'   => '1 (default)',
+			'2'   => '2',
+			'4'   => '4'
+		]
 	)
-)->setHelp('Set the delay multiplier. Leave alone if unsure.');
+)->setHelp('Set the delay multiplier.<br />If your display is slow and cannot keep up with the flow of data, garbage can appear on the LCD. Set this delay multiplier to 2 or 4 to increase the delays. Leave as 1 if unsure, the default of 1 is for a non-multiplied delay.');
 
 /********* New section *********/
 $form->add($section); 
