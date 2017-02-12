@@ -43,7 +43,7 @@ if (!isset($pconfig['backlight']))                   $pconfig['backlight']      
 if (!isset($pconfig['outputleds']))                  $pconfig['outputleds']                  = 'no';
 if (!isset($pconfig['mtxorb_type']))                 $pconfig['mtxorb_type']                 = 'lcd'; // specific to Matrix Orbital driver
 if (!isset($pconfig['mtxorb_adjustable_backlight'])) $pconfig['mtxorb_adjustable_backlight'] = true;  // specific to Matrix Orbital driver
-if (!isset($pconfig['delaymult']))                   $pconfig['delaymult']                   = '1';
+if (!isset($pconfig['hd44780_delaymult']))           $pconfig['hd44780_delaymult']           = '1';   // specific to hd44780 driver
 
 
 if ($_POST) {
