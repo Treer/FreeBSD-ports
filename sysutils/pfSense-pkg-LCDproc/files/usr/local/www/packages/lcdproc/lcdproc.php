@@ -43,6 +43,7 @@ if (!isset($pconfig['backlight']))                   $pconfig['backlight']      
 if (!isset($pconfig['outputleds']))                  $pconfig['outputleds']                  = 'no';
 if (!isset($pconfig['mtxorb_type']))                 $pconfig['mtxorb_type']                 = 'lcd'; // specific to Matrix Orbital driver
 if (!isset($pconfig['mtxorb_adjustable_backlight'])) $pconfig['mtxorb_adjustable_backlight'] = true;  // specific to Matrix Orbital driver
+if (!isset($pconfig['delaymult']))                   $pconfig['delaymult']                   = '1';
 
 
 if ($_POST) {
@@ -68,6 +69,7 @@ if ($_POST) {
 		$lcdproc_config['outputleds']                  = $pconfig['outputleds'];
 		$lcdproc_config['mtxorb_type']                 = $pconfig['mtxorb_type'];
 		$lcdproc_config['mtxorb_adjustable_backlight'] = $pconfig['mtxorb_adjustable_backlight'];
+		$lcdproc_config['delaymult']                   = $pconfig['delaymult'];
 				
 		write_config();
 		sync_package_lcdproc();
@@ -263,6 +265,7 @@ $section->add($subsection);
 		var using_HD44780_driver  = driverName_lowercase.indexOf("hd44780") >= 0;
 		using_HD44780_driver     |= jQuery("#driver option:selected").text().toLowerCase().indexOf("hd44780") >= 0;
 		hideInput('connection_type', !using_HD44780_driver); // Hides the entire section
+		hideInput('delaymult', !using_HD44780_driver); // Hides the entire section
 
 		// Hide the Matrix Orbital specific fields when not using the MtxOrb driver		
 		var using_MtxOrb_driver  = driverName_lowercase.indexOf("mtxorb") >= 0;
@@ -294,6 +297,15 @@ $section->addInput(
 		]
 	)
 )->setHelp('Set the port speed.<br />Caution: not all the driver or panels support all the speeds, leave "default" if unsure.');
+
+$section->addInput(
+	new Form_Input(
+		'delaymult',
+		'Delay Multiplier',
+                'text',
+		$pconfig['delaymult'] // Initial value.
+	)
+)->setHelp('Set the delay multiplier. Leave alone if unsure.');
 
 /********* New section *********/
 $form->add($section); 
