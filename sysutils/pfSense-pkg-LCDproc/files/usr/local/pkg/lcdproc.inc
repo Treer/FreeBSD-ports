@@ -300,7 +300,7 @@ function sync_package_lcdproc() {
 				$config_text .= set_lcd_value("contrast", 1000, 350);
 				break;
 			case "hd44780":
-				$keypad = $lcdproc_config['connection_type'] != 'pertelian';
+				$hasKeypad = $lcdproc_config['connection_type'] != 'pertelian'; // The Pertelian X2040 won't be the only display with no keypad so add more logic here as necessary.				
 				$config_text .= "[{$lcdproc_config['driver']}]\n";
 				$config_text .= "driverpath=/usr/local/lib/lcdproc/\n";
 				$config_text .= "ConnectionType={$lcdproc_config['connection_type']}\n";
@@ -308,16 +308,14 @@ function sync_package_lcdproc() {
 					$config_text .= "Device={$realport}\n";
 					$config_text .= "Port=0x378\n";
 					$config_text .= "Speed=0\n";
-					if ($keypad) {
-						$config_text .= "Keypad=yes\n";
-					}
+					$config_text .= "Keypad=" . ($hasKeypad ? "yes" : "no") . "\n";
 					$config_text .= set_lcd_value("contrast", 1000, 850);
 					$config_text .= set_lcd_value("brightness", 1000, 800);
 					$config_text .= set_lcd_value("offbrightness", 1000, 0);
 					$config_text .= "Backlight=yes\n";
 					$config_text .= "OutputPort=no\n";
 					$config_text .= "Charmap=hd44780_default\n";
-					$config_text .= "DelayMult={$lcdproc_config['delaymult']}\n";
+					$config_text .= "DelayMult={$lcdproc_config['hd44780_delaymult']}\n";
 					$config_text .= "DelayBus=true\n";
 					$config_text .= "Size={$lcdproc_config['size']}\n";
 				}
