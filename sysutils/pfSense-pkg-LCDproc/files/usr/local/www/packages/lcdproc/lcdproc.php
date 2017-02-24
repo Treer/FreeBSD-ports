@@ -300,14 +300,15 @@ $section->addInput(
 // The Delay Multiplier is HD44780-specific, so is hidden by javascript
 // if the HD44780 driver is not being used.
 $section->addInput(
-	new Form_Input(
+	new Form_Select(
 		'hd44780_delaymult',
 		'Delay Multiplier',
 		$pconfig['hd44780_delaymult'], // Initial value.
 		[
 			'1'   => '1 (default)',
 			'2'   => '2',
-			'4'   => '4'
+			'4'   => '4',
+			'8'   => '8'
 		]
 	)
 )->setHelp('Set the delay multiplier.<br />If your display is slow and cannot keep up with the flow of data, garbage can appear on the LCD. Set this delay multiplier to 2 or 4 to increase the delays. Leave as 1 if unsure, the default of 1 is for a non-multiplied delay.');
